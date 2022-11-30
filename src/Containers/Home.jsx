@@ -7,15 +7,16 @@ import Feed from "../Components/Feed";
 import NavBar from "../Components/NavBar";
 import Search from "../Components/Search";
 import Sharevid from "../Components/Sharevid";
+import { categories } from "../data";
 
 const Home = ({ user }) => {
-  console.log(user);
   return (
     <>
       <NavBar user={user} />
 
       <Flex direction={"column"} justify={"start"} align={"center"} w={20}>
-        <Category />
+        {categories &&
+          categories.map((data) => <Category key={data.id} data={data} />)}
       </Flex>
 
       <Flex w={"full"} justify="center" align={"center"} px={4}>
