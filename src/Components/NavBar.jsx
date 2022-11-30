@@ -1,15 +1,20 @@
 import {
   Flex,
   Heading,
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import { IoAdd, IoMoon, IoSearch, IoSunny } from "react-icons/io5";
+import { IoAdd, IoLogOut, IoMoon, IoSearch, IoSunny } from "react-icons/io5";
 
 const NavBar = ({ user }) => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -39,7 +44,7 @@ const NavBar = ({ user }) => {
         />
       </InputGroup>
 
-      <Flex justify={"center"} align="center">
+      <Flex justify={"center"} align="center" gap={8}>
         {/* Dark / Light mode */}
         <Flex
           w="40px"
@@ -58,7 +63,7 @@ const NavBar = ({ user }) => {
         </Flex>
 
         {/* Create Btn */}
-        <Link path="/create">
+        <Link to="/create">
           <Flex
             w="40px"
             h="40px"
@@ -77,6 +82,19 @@ const NavBar = ({ user }) => {
             />
           </Flex>
         </Link>
+        <Menu>
+          <MenuButton>
+            <Image src={user?.photoURL} w="40px" h="40px" rounded="full" />
+          </MenuButton>
+          <MenuList shadow={"lg"}>
+            <Link to={"/"}>
+              <MenuItem>My Account</MenuItem>
+            </Link>
+            <MenuItem flexDirection={"center"} alignItems={"center"} gap={4}>
+              Logout <IoLogOut fontSize={25} />
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
     </Flex>
   );
